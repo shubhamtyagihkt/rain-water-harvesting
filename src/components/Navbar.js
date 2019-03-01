@@ -6,7 +6,7 @@ export default class Navbar extends Component {
       <div className="sidenav">
         <ul style={{ marginLeft: 0, paddingLeft: 0 }} className=" mt3">
           <li className="pt4">
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li className="pt4">
             <Link to="/grievance">Grievance</Link>
