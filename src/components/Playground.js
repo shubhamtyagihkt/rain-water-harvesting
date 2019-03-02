@@ -1,3 +1,4 @@
+/*global google*/
 import React, { Component } from "react";
 import {
   withScriptjs,
@@ -13,7 +14,7 @@ const MyMapComponent = withScriptjs(
   ))
 );
 
-export default class Playground extends Component {
+export default class OptimalMap extends Component {
   render() {
     return (
       <MyMapComponent
