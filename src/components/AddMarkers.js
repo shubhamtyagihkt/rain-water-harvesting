@@ -8,6 +8,12 @@ import {
   Marker
 } from "react-google-maps";
 
+let locations = [];
+locations.push({
+  lat: 28.7041,
+  lng: 77.1025
+});
+
 const Map = compose(
   withStateHandlers(
     () => ({
@@ -16,6 +22,18 @@ const Map = compose(
     }),
     {
       onMapClick: ({ isMarkerShown }) => e => {
+        let lat = e.latLng.lat();
+        let lng = e.latLng.lng();
+
+        console.log(lat, lng);
+
+        locations.push({
+          lat: lat,
+          lng: lng
+        });
+
+        console.log(locations);
+
         return {
           markerPosition: e.latLng,
           isMarkerShown: true
@@ -31,7 +49,11 @@ const Map = compose(
     defaultCenter={{ lat: 28.7041, lng: 77.1025 }}
     onClick={props.onMapClick}
   >
-    {props.isMarkerShown && <Marker position={props.markerPosition} />}
+    {/* <Marker position={props.markerPosition} />
+    <Marker position={{ lat: 28.7041, lng: 77.1025 }} /> */}
+    {locations.map(latlng => {
+      return <Marker position={{ lat: latlng.lat, lng: latlng.lng }} />;
+    })}
   </GoogleMap>
 ));
 
