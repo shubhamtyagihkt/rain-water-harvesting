@@ -15,10 +15,12 @@ const Map = compose(
       markerPosition: null
     }),
     {
-      onMapClick: ({ isMarkerShown }) => e => ({
-        markerPosition: e.latLng,
-        isMarkerShown: true
-      })
+      onMapClick: ({ isMarkerShown }) => e => {
+        return {
+          markerPosition: e.latLng,
+          isMarkerShown: true
+        };
+      }
     }
   ),
   withScriptjs,
@@ -26,7 +28,7 @@ const Map = compose(
 )(props => (
   <GoogleMap
     defaultZoom={8}
-    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+    defaultCenter={{ lat: 28.7041, lng: 77.1025 }}
     onClick={props.onMapClick}
   >
     {props.isMarkerShown && <Marker position={props.markerPosition} />}
