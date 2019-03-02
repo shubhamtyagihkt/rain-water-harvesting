@@ -8,12 +8,17 @@ import {
   InfoWindow
 } from "react-google-maps";
 
+let locations = [
+  { lat: 28.7041, lng: 77.1025 },
+  { lat: 30.7333, lng: 76.7794 }
+];
+
 const MyMapComponent = withScriptjs(
   withGoogleMap(props => (
-    <GoogleMap defaultZoom={8} defaultCenter={{ lat: -34.397, lng: 150.644 }}>
-      {props.isMarkerShown && (
-        <Marker position={{ lat: -34.397, lng: 150.644 }} />
-      )}
+    <GoogleMap defaultZoom={8} defaultCenter={{ lat: 28.7041, lng: 77.1025 }}>
+      {locations.map(latlng => {
+        return <Marker position={{ lat: latlng.lat, lng: latlng.lng }} />;
+      })}
     </GoogleMap>
   ))
 );
