@@ -8,16 +8,21 @@ import {
   InfoWindow
 } from "react-google-maps";
 
-let locations = [
-  { lat: 28.7041, lng: 77.1025 },
-  { lat: 30.7333, lng: 76.7794 }
-];
+let locations;
+fetch("https://rwholt-api.herokuapp.com/possible-locations")
+  .then(res => res.json())
+  .then(data => {
+    locations = data;
+    console.log(locations);
+  });
 
 const MyMapComponent = withScriptjs(
   withGoogleMap(props => (
     <GoogleMap defaultZoom={8} defaultCenter={{ lat: 28.7041, lng: 77.1025 }}>
       {locations.map(latlng => {
-        return <Marker position={{ lat: latlng.lat, lng: latlng.lng }} />;
+        return (
+          <Marker position={{ lat: latlng.latitude, lng: latlng.longitude }} />
+        );
       })}
     </GoogleMap>
   ))
