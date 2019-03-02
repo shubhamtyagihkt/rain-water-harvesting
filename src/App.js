@@ -18,7 +18,16 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/grievance" component={Grievance} />
             <Route exact path="/optimalmap" component={OptimalMap} />
-            <Route exact path="/playground" component={() => <Playground />} />
+            <Route
+              exact
+              path="/playground"
+              component={() => (
+                <MapLoader
+                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDurZQBXjtSzKeieXwtFeGe-jhZu-HEGQU"
+                  loadingElement={<div style={{ height: `100%` }} />}
+                />
+              )}
+            />
           </Switch>
         </div>
       </BrowserRouter>

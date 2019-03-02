@@ -1,38 +1,55 @@
 /*global google*/
 import React, { Component } from "react";
 import {
-  withScriptjs,
   withGoogleMap,
+  withScriptjs,
   GoogleMap,
-  Marker,
-  InfoWindow
+  DirectionsRenderer
 } from "react-google-maps";
 
-const MyMapComponent = withScriptjs(
-  withGoogleMap(props => (
-    <GoogleMap defaultZoom={8} defaultCenter={{ lat: 28.7041, lng: 77.1025 }} />
-  ))
-);
-
 export default class OptimalMap extends Component {
-  render() {
-    return (
-      <MyMapComponent
-        isMarkerShown
-        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={
-          <div
-            style={{
-              height: `980px`,
-              marginLeft: 0,
-              paddingLeft: 0,
-              marginRight: "10px"
-            }}
-          />
+  state = {
+    directions: null
+  };
+
+  componentDidMount() {
+    const directionsService = new google.maps.DirectionsService();
+
+    const origin = { lat: 28.7041, lng: 77.1025 };
+    const destination = { lat: 30.7333, lng: 76.7794 };
+
+    directionsService.route(
+      {
+        origin: origin,
+        destination: destination,
+        travelMode: google.maps.TravelMode.DRIVING
+      },
+      (result, status) => {
+        if (status === google.maps.DirectionsStatus.OK) {
+          this.setState({
+            directions: result
+          });
+        } else {
+          console.error(`error fetching directions ${result}`);
         }
-        mapElement={<div style={{ height: `100%` }} />}
-      />
+      }
+    );
+  }
+
+  render() {
+    const GoogleMapExample = withGoogleMap(props => (
+      <GoogleMap defaultCenter={{ lat: 28.7041, lng: 77.1025 }} defaultZoom={8}>
+        <DirectionsRenderer directions={this.state.directions} />
+      </GoogleMap>
+    ));
+
+    return (
+      <div>
+        <GoogleMapExample
+          containerElement={<div style={{ height: `980px`, width: "100%" }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
+      </div>
     );
   }
 }
