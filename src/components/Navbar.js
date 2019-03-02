@@ -17,6 +17,9 @@ export default class Navbar extends Component {
           <li className="pt4">
             <Link to="/playground">Playground</Link>
           </li>
+          <li className="pt4">
+            <Link to="/addmarkers">Add Markers</Link>
+          </li>
         </ul>
       </div>
     );

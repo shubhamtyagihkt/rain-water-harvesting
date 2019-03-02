@@ -7,6 +7,7 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Playground from "./components/Playground";
 import { withScriptjs } from "react-google-maps";
+import AddMarkers from "./components/AddMarkers";
 class App extends Component {
   render() {
     const MapLoader = withScriptjs(Playground);
@@ -28,6 +29,7 @@ class App extends Component {
                 />
               )}
             />
+            <Route exact path="/addmarkers" component={AddMarkers} />
           </Switch>
         </div>
       </BrowserRouter>

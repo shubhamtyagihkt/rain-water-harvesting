@@ -54,7 +54,11 @@ export default class OptimalMap extends Component {
     return (
       <div>
         <GoogleMapExample
-          containerElement={<div style={{ height: `980px`, width: "100%" }} />}
+          containerElement={
+            <div
+              style={{ height: `980px`, width: "100%", marginRight: "10px" }}
+            />
+          }
           mapElement={<div style={{ height: `100%` }} />}
         />
       </div>
