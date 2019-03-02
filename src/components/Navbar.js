@@ -12,7 +12,7 @@ export default class Navbar extends Component {
             <Link to="/grievance">Grievance</Link>
           </li>
           <li className="pt4">
-            <Link to="/playground">Playground</Link>
+            <Link to="/optimalmap">Locations</Link>
           </li>
         </ul>
       </div>
