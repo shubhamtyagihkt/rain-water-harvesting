@@ -22,7 +22,15 @@ export default class OptimalMap extends Component {
       {
         origin: origin,
         destination: destination,
-        travelMode: google.maps.TravelMode.DRIVING
+        travelMode: google.maps.TravelMode.DRIVING,
+        waypoints: [
+          {
+            location: new google.maps.LatLng(30.3782, 76.7767)
+          },
+          {
+            location: new google.maps.LatLng(29.0588, 76.0856)
+          }
+        ]
       },
       (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
